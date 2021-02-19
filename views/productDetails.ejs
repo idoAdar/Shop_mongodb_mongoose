@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/navigation.css">
+    <link rel="stylesheet" href="/productList.css">
+    <title><%= prod.item %></title>
+</head>
+<body>
+    <%- include('./includes/navigation.ejs') %>
+    <main class="card">
+        <h1 class="product_title"><%= prod.item %></h1>
+        <div>
+            <img src="<%= prod.img %>" alt="IMG" class="product_img">
+        </div>
+        <h2 class="product_price"><%= prod.price %> $</h2>
+        <p class="product_description"><%= prod.description %></p>
+        <div class="card_board">
+            <% if(isAuthenticated) { %>
+            <form action="/cart" method="POST">
+                <button type="submit" class="btn">Add to Cart</button>
+                <input type="hidden" value="<%= prod._id %>" name="id">
+                <input type="hidden" value="<%= prod.item %>" name="item">
+            </form>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>

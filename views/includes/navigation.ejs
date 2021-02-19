@@ -1,0 +1,24 @@
+<!-- <header class="main-header"> -->
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item"><a class="<%= path === '/' ? 'active' : '' %>" href="/">Shop</a></li>
+            <% if (isAuthenticated) { %>
+                <li class="main-header__item"><a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">New Product</a></li>
+                <li class="main-header__item"><a class="<%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin Products</a></li>
+                <li class="main-header__item"><a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a></li>
+            <% } %>
+            <div class="nav_left">
+            <% if (isAuthenticated) { %>
+                <li class="main-header__item">
+                    <form action="/logout" method="POST">
+                        <button class="nav_btn">Logout</button>
+                    </form>
+                </li>
+                <% } else { %>
+                    <li class="main-header__item"><a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a></li>
+                <% } %>
+                <li class="main-header__item"><a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">SignUp</a></li>
+            </div>
+            </ul>
+    </nav>
+<!-- </header> -->

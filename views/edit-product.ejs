@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/navigation.css">
+    <link rel="stylesheet" href="/newProduct.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('./includes/navigation.ejs') %>
+    <h1>Edit your product</h1>
+    <main>
+        <form action="/admin/edit-product/save" method="POST" class="product_form">
+            <div class="form-control">
+                <label for="item">Item</label>
+                <input value="<%= prod.item %>" type="text" name="item" id="item">
+            </div>
+            <div class="form-control">
+                <label for="img">Image URL</label>
+                <input value="<%= prod.img %>" type="text" name="img" id="img">
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label>
+                <input value="<%= prod.price %>" type="number" name="price" id="price" step="0.01">
+            </div>
+            <div class="form-control">
+                <label for="description">description</label>
+                <textarea rows="5" name="description" id="description"><%= prod.description %></textarea>
+            </div>
+            <input type="hidden" value="<%= prod._id %>" name="id">
+            <button class="btn" type="submit">Save</button>
+        </form>
+    </main>
+</body>
+</html>

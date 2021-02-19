@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/navigation.css">
+    <link rel="stylesheet" href="/productList.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('./includes/navigation.ejs') %>
+
+    <main>
+        <% if (prod.length > 0) { %>
+        <div class="grid">
+        <% for (let product of prod) { %>
+            <article class="card">
+                <header>
+                    <h1 class="product_title"><%= product.item %></h1>
+                </header>
+                <div>
+                    <img src="<%= product.img %>" class="product_img" alt="IMG">
+                </div>
+                <div>
+                    <h2 class="product_price"><%= product.price %> $</h2>
+                    <p class="product_description"><%= product.description %></p>
+                </div>
+                <div class="card_board">
+                    <a href="<%= product._id %>" class="abtn">Details</a>
+                    <% if(isAuthenticated) { %>
+                    <form action="/cart" method="POST">
+                        <button type="submit" class="btn">Add to Cart</button>
+                        <input type="hidden" value="<%= product._id %>" name="id">
+                        <input type="hidden" value="<%= product.item %>" name="item">
+                        <input type="hidden" value="<%= product.price %>" name="price">
+                    </form>
+                    <% } %>
+                </div>
+            </article>
+            <% } %>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>
